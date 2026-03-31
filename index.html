@@ -130,22 +130,25 @@ img{max-width:100%;height:auto;display:block}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
 /* MOBILE MENU */
-.mobile-menu{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.97);backdrop-filter:blur(30px);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1050;opacity:0;visibility:hidden;transition:var(--transition)}
-.mobile-menu.active{opacity:1;visibility:visible}
-.mobile-menu-close{position:absolute;top:20px;right:24px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--gray-100);border:none;border-radius:50%;cursor:pointer;font-size:1.3rem;color:var(--dark);transition:var(--transition);z-index:1060}
+.mobile-menu{position:fixed;top:0;right:0;width:300px;height:100vh;background:var(--white);box-shadow:-8px 0 40px rgba(0,0,0,0.12);display:flex;flex-direction:column;align-items:flex-start;padding:90px 36px 40px;z-index:1050;transform:translateX(100%);visibility:hidden;transition:transform .35s cubic-bezier(0.4,0,0.2,1),visibility .35s}
+.mobile-menu.active{transform:translateX(0);visibility:visible}
+.mobile-menu-backdrop{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(26,43,60,0.3);z-index:1049;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
+.mobile-menu-backdrop.active{opacity:1;visibility:visible}
+.mobile-menu-close{position:absolute;top:20px;right:20px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--gray-100);border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;color:var(--dark);transition:var(--transition);z-index:1060}
 .mobile-menu-close:hover{background:var(--gray-200);color:var(--coral)}
-.mobile-menu a{font-family:var(--font-heading);font-size:1.75rem;font-weight:600;color:var(--dark);padding:14px;opacity:0;transform:translateY(20px);transition:all .4s ease}
-.mobile-menu.active a{opacity:1;transform:translateY(0)}
-.mobile-menu.active a:nth-child(1){transition-delay:.1s}
-.mobile-menu.active a:nth-child(2){transition-delay:.15s}
-.mobile-menu.active a:nth-child(3){transition-delay:.2s}
-.mobile-menu.active a:nth-child(4){transition-delay:.25s}
-.mobile-menu.active a:nth-child(5){transition-delay:.3s}
-.mobile-menu.active a:nth-child(6){transition-delay:.35s}
-.mobile-menu.active a:nth-child(7){transition-delay:.4s}
-.mobile-menu.active a:nth-child(8){transition-delay:.45s}
-.mobile-menu-cta{margin-top:28px;opacity:0;transform:translateY(20px);transition:all .4s ease .5s}
-.mobile-menu.active .mobile-menu-cta{opacity:1;transform:translateY(0)}
+.mobile-menu a{font-family:var(--font-heading);font-size:1.1rem;font-weight:600;color:var(--dark);padding:12px 0;border-bottom:1px solid var(--gray-100);width:100%;opacity:0;transform:translateX(20px);transition:all .3s ease}
+.mobile-menu.active a{opacity:1;transform:translateX(0)}
+.mobile-menu.active a:nth-child(2){transition-delay:.04s}
+.mobile-menu.active a:nth-child(3){transition-delay:.08s}
+.mobile-menu.active a:nth-child(4){transition-delay:.12s}
+.mobile-menu.active a:nth-child(5){transition-delay:.16s}
+.mobile-menu.active a:nth-child(6){transition-delay:.2s}
+.mobile-menu.active a:nth-child(7){transition-delay:.24s}
+.mobile-menu.active a:nth-child(8){transition-delay:.28s}
+.mobile-menu.active a:nth-child(9){transition-delay:.32s}
+.mobile-menu-cta{margin-top:24px;width:100%;opacity:0;transform:translateX(20px);transition:all .3s ease .36s}
+.mobile-menu.active .mobile-menu-cta{opacity:1;transform:translateX(0)}
+.mobile-menu-cta .btn{width:100%;justify-content:center}
 
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:90px;overflow:hidden;background:linear-gradient(160deg,var(--sky) 0%,var(--white) 40%,var(--sky-deep) 100%)}
@@ -419,6 +422,7 @@ section{padding:100px 0}
 </nav>
 
 <!-- MOBILE MENU -->
+<div class="mobile-menu-backdrop" id="mobileBackdrop" onclick="closeMobile()"></div>
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="closeMobile()" aria-label="Close menu"><i class="fas fa-times"></i></button>
   <a href="#about" onclick="closeMobile()">About</a>
@@ -819,9 +823,9 @@ const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>30));
 
 // MOBILE
-const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');
-hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileMenu.classList.toggle('active');document.body.style.overflow=mobileMenu.classList.contains('active')?'hidden':''});
-function closeMobile(){hamburger.classList.remove('active');mobileMenu.classList.remove('active');document.body.style.overflow=''}
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu'),mobileBackdrop=document.getElementById('mobileBackdrop');
+hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileMenu.classList.toggle('active');mobileBackdrop.classList.toggle('active');document.body.style.overflow=mobileMenu.classList.contains('active')?'hidden':''});
+function closeMobile(){hamburger.classList.remove('active');mobileMenu.classList.remove('active');mobileBackdrop.classList.remove('active');document.body.style.overflow=''}
 
 // LOGIN MODAL
 function openModal(e){if(e)e.preventDefault();document.getElementById('loginModal').classList.add('active');document.body.style.overflow='hidden'}
