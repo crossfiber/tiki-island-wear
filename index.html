@@ -132,6 +132,8 @@ img{max-width:100%;height:auto;display:block}
 /* MOBILE MENU */
 .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.97);backdrop-filter:blur(30px);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1050;opacity:0;visibility:hidden;transition:var(--transition)}
 .mobile-menu.active{opacity:1;visibility:visible}
+.mobile-menu-close{position:absolute;top:20px;right:24px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--gray-100);border:none;border-radius:50%;cursor:pointer;font-size:1.3rem;color:var(--dark);transition:var(--transition);z-index:1060}
+.mobile-menu-close:hover{background:var(--gray-200);color:var(--coral)}
 .mobile-menu a{font-family:var(--font-heading);font-size:1.75rem;font-weight:600;color:var(--dark);padding:14px;opacity:0;transform:translateY(20px);transition:all .4s ease}
 .mobile-menu.active a{opacity:1;transform:translateY(0)}
 .mobile-menu.active a:nth-child(1){transition-delay:.1s}
@@ -227,7 +229,8 @@ section{padding:100px 0}
 .pricing-table tbody tr:hover{background:var(--sky)}
 .pricing-table tbody td:first-child{font-family:var(--font-heading);font-weight:600;color:var(--dark)}
 .pricing-table .price-cell{font-family:var(--font-mono);font-weight:600;color:var(--ocean)}
-.popular-badge{display:inline-block;padding:3px 10px;background:var(--seafoam);color:var(--white);font-family:var(--font-mono);font-size:.62rem;font-weight:600;border-radius:50px;margin-left:8px;letter-spacing:.5px}
+.popular-badge{display:inline-block;padding:4px 12px;background:var(--seafoam);color:var(--white);font-family:var(--font-mono);font-size:.62rem;font-weight:600;border-radius:50px;margin-left:8px;letter-spacing:.5px;white-space:nowrap;vertical-align:middle}
+@media(max-width:768px){.popular-badge{display:block;margin-left:0;margin-top:6px;width:fit-content}.pricing-table thead th,.pricing-table tbody td{padding:14px 14px;font-size:.82rem}}
 .pricing-note{padding:18px 24px;font-size:.84rem;color:var(--gray-500);border-top:1px solid var(--gray-100)}
 .pricing-cta{text-align:center;margin-top:44px}
 
@@ -417,6 +420,7 @@ section{padding:100px 0}
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMobile()" aria-label="Close menu"><i class="fas fa-times"></i></button>
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#products" onclick="closeMobile()">Products</a>
   <a href="#pricing" onclick="closeMobile()">Pricing</a>
