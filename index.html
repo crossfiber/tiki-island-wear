@@ -130,7 +130,10 @@ img{max-width:100%;height:auto;display:block}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
 /* MOBILE MENU */
-.mobile-menu{position:fixed;top:0;right:0;width:300px;height:100vh;background:var(--white);box-shadow:-8px 0 40px rgba(0,0,0,0.12);display:flex;flex-direction:column;align-items:flex-start;padding:90px 36px 40px;z-index:1050;transform:translateX(100%);visibility:hidden;transition:transform .35s cubic-bezier(0.4,0,0.2,1),visibility .35s}
+.mobile-menu{position:fixed;top:0;right:0;width:300px;height:100vh;background:var(--white);box-shadow:-8px 0 40px rgba(0,0,0,0.12);display:flex;flex-direction:column;align-items:flex-start;padding:24px 36px 40px;z-index:1050;transform:translateX(100%);visibility:hidden;transition:transform .35s cubic-bezier(0.4,0,0.2,1),visibility .35s;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.mobile-menu-brand{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--gray-200);width:100%}
+.mobile-menu-brand img{height:48px;width:48px;object-fit:contain}
+.mobile-menu-brand span{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:var(--dark);letter-spacing:-0.3px}
 .mobile-menu.active{transform:translateX(0);visibility:visible}
 .mobile-menu-backdrop{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(26,43,60,0.3);z-index:1049;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
 .mobile-menu-backdrop.active{opacity:1;visibility:visible}
@@ -425,6 +428,10 @@ section{padding:100px 0}
 <div class="mobile-menu-backdrop" id="mobileBackdrop" onclick="closeMobile()"></div>
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="closeMobile()" aria-label="Close menu"><i class="fas fa-times"></i></button>
+  <div class="mobile-menu-brand">
+    <img src="https://tikiislandwear.com/wp-content/uploads/2021/07/Logo_small.png" alt="Tiki Island Wear">
+    <span>Tiki Island Wear</span>
+  </div>
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#products" onclick="closeMobile()">Products</a>
   <a href="#pricing" onclick="closeMobile()">Pricing</a>
